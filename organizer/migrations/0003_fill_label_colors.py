@@ -22,7 +22,7 @@ def backward(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('organizer', '0002_add_label_color_model'),
+        ('organizer', '0001_initial'),
     ]
 
     operations = [
