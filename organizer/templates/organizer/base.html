@@ -1,0 +1,71 @@
+{% load static socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="Bo Morin">
+	<title>{% block page_title %}Borganizer{% endblock %}</title>
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'css/app.css' %}" rel="stylesheet">
+	<link href= 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css' rel='stylesheet'> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" > </script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" > </script>
+	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+	{% block extra_js %}
+	{% endblock %}
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	    <div class="navbar-nav">
+	    <ul class="nav">
+	    	{% if user.is_authenticated %}
+			  <li class="nav-item">
+			    <a class="nav-item nav-link active" href="{% url 'dashboard' %}">Dashboard</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-item nav-link" href="{% url 'labels_list' %}">Manage Labels</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-item nav-link" href="{% url 'account_logout' %}">Log out</a>
+			  </li>
+		    {% else %}
+				<li class="nav-item">
+			    	<a class="nav-item nav-link" href="{% provider_login_url 'google' %}">Log in with Google</a>
+			    </li>
+		    {% endif %}
+		</ul>
+	    </div>
+	  </div>
+	</nav>
+
+	{% if user.is_authenticated %}
+
+		<div class="container main-content">
+			{% block main_content %}{% endblock %}
+		</div>
+	{% else %}
+		<div block="container main-content">
+			<div class="row">
+				<div class="col">
+					<div class="jumbotron">
+					  <h1 class="display-4">Welcome to Borganizer!</h1>
+					  <p class="lead">This is a day/month/week Kanban style life organizer to help you prioritize your life and be productive!</p>
+					  <hr class="my-4">
+					  <p>The good news is, all you need to log in is Google! The bad news is, all you can use to log in is Google!</p>
+					  <p class="lead">
+					    <a class="btn btn-primary btn-lg" href="{% provider_login_url 'google' %}" role="button">Login with Google</a>
+					  </p>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+</body>

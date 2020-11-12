@@ -1,0 +1,35 @@
+{% extends 'organizer/base.html' %}
+{% load apptags %}
+
+
+{% block main_content %}
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h3>{{date}}</h3>
+			</div>
+			<div class="col">
+				<h3>Week #{{week_number}}</h3>
+			</div>
+		</div>
+	</div>
+	{% for organizerobject in organizer_objects %}
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<h4>{{organizerobject.kanban_header}}</h4>
+				</div>
+			</div>
+			<div class="row">
+				{% include 'organizer/includes/kanbanboard.html' with organizerobject=organizerobject.organizer_object add_url=organizerobject.organizer_object.pk|add_kanbanitem_url:datestr %}
+			</div>
+		</div>
+	{% endfor %}
+
+
+	{% comment %}
+	<h3>Goals</h3>
+	<a href="{% url 'add_item' item_type='goal' organizerobject_id=month.pk %}{% if datestr %}?date={{datestr}}{% endif %}">Add a goal</a><br />
+	{% include 'organizer/includes/goalboard.html' with goals=month.goal_set.all %}
+	{% endcomment %}
+{% endblock %}

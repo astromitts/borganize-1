@@ -1,0 +1,62 @@
+body {
+	background-color: #D6DBDF;
+}
+
+.main-content {
+	margin-top: 2rem;
+}
+
+
+.kanban-group {
+	background-color: #FFFFFF;
+	border: 1px dashed #000000;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	margin-bottom: 2rem;
+	border-radius: 10px;
+}
+
+.kanban-category { }
+
+.kanban-category_todo {
+	border-right: 1px dotted #7F7F7F;
+}
+
+.kanban-category_done {
+	border-left: 1px dotted #7F7F7F;
+}
+.kanban-item {
+	border: 1px solid #CCCCCC;
+	padding-top: .5rem;
+	padding-bottom: .5rem;
+	border-radius: 5px;
+	margin-bottom: .5rem;
+}
+
+.kanban-item_label {
+	margin-top: .25rem;
+	background-color: #CCCCCC;
+}
+
+.label-manager-list {
+	padding-top: 2rem;
+	background-color: #FFFFFF;
+	border: 1px dashed #000000;
+	border-radius: 10px;
+	min-height: 40rem;
+}
+
+.label-manager-list_item {
+	background-color: #FFFFFF;
+	border: 1px dotted #000000;
+	border-radius: 10px;
+	margin: .5rem;
+}
+
+.label-manager-list_color {
+	border-radius: 5px;
+	display: inline-block;
+	width: 6rem;
+	height: 90%;
+	margin: 0 auto;
+}

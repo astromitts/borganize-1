@@ -1,0 +1,29 @@
+{% extends 'organizer/base.html' %}
+ 
+{% block main_content %}
+<div class="container">
+	<div class="col label-manager-list">
+		<div class="row">
+			<div class="col">
+				<a href="{% url 'create_label' %}"><button class="btn btn-success">+</button></a>
+			</div>
+		</div>
+		{% for label in labels %}
+			<div class="row label-manager-list_item">
+				<div class="col">
+					<b>Label: </b>{{label.label}}
+				</div>
+				<div class="col">
+					<b>Color: </b>{{label.color.name}}
+				</div>
+				<div class="col">
+					<div class="label-manager-list_color" style="background-color: {{label.color.hex_value}}"></div>
+				</div>
+				<div class="col">
+					<a href="{% url 'edit_label' label_id=label.pk %}"><button class="btn btn-primary btn-sm">edit</button></a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

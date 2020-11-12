@@ -1,0 +1,18 @@
+{% extends 'organizer/base.html' %}
+
+{% block main_content %}
+{% if header %}<h2>{{header}}</h2>{% endif %}
+	<form class="form" method="{% if method %}{{method}}{% else %}POST{% endif %}" action="{{action}}">
+	{% if method != 'GET' %}
+		{% csrf_token %}
+	{% endif %}
+	<table class="table">
+		{% if form %}
+			{{form.as_table}}
+		{% endif %}
+		<tr>
+			<td></td>
+			<td><input type="submit" class="btn btn-primary" value="{% if submit_text %}{{submit_text}}{%else%}submit{%endif%}" /></td>
+	</table>
+	</form>
+{% endblock %}

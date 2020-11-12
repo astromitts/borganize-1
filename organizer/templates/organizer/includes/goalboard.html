@@ -1,0 +1,16 @@
+<table border=1>
+	<tr>
+		<th>Goal</th><th>Status</th>
+	</tr>
+	{% for goal in goals %}
+		<tr>
+			<td>{{goal.description}}</td>
+			<td>{{goal.status}}</td>
+			<td>
+				{% if goal.status != 'complete' %}
+					<a href="{% url 'migrate_goal' goal_id=goal.id status='complete' %}"><button>complete</button></a>
+				{% endif %}
+			</td>
+		</tr>
+	{% endfor %}
+</table>

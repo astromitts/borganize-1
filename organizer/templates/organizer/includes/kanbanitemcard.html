@@ -1,0 +1,22 @@
+<div class="container kanban-item">
+	<div class="row">
+		<div class="col-2">
+			{% if kanbanitem.status != 'to do' %}
+				<a href="{% url 'migrate_kanban_item' direction='back' kanban_item_id=kanbanitem.pk %}"><button class="btn btn-sm btn-outline-success"><</button></a>
+			{% endif %}
+		</div>
+		<div class="col"><a href="{{edit_url}}{{kanbanitem.pk}}/">{{kanbanitem.description}}</a></div>
+		<div class="col-2">
+			{% if kanbanitem.status != 'done' %}
+				<a href="{% url 'migrate_kanban_item' direction='forward' kanban_item_id=kanbanitem.pk %}"><button class="btn btn-sm btn-outline-success">></button></a>
+			{% endif %}
+		</div>
+	</div>
+	{% if kanbanitem.label %}
+	<div class="row kanban-item_label" style="background-color: {{kanbanitem.label.color.hex_value}}">
+		<div class="col-2"></div>
+		<div class="col">{{kanbanitem.label.label}}</div>
+		<div class="col-2"></div>
+	</div>
+	{% endif %}
+</div>
