@@ -96,7 +96,10 @@ class AuthenticatedAppView(View):
             return self.handle_no_permission()
 
         if kwargs.get('organizerobject_id'):
-            organizer_object = get_object_or_404(OrganizerItem, pk=kwargs['organizerobject_id'], user=self.appuser)
+            self.organizer_object = get_object_or_404(OrganizerItem, pk=kwargs['organizerobject_id'], user=self.appuser)
+
+        if kwargs.get('kanbanitem_id'):
+            self.kanban_item = get_object_or_404(KanBanItem, pk=kwargs['kanbanitem_id'])
 
         self.today = datetime.today()
 
@@ -221,9 +224,9 @@ class RolloverView(AuthenticatedAppView):
         return redirect(reverse('dashboard'))
 
 
-class AddItemView(AuthenticatedAppView):
+class AddEditItemView(AuthenticatedAppView):
     def setup(self, request, *args, **kwargs):
-        super(AddItemView, self).setup(request, *args, **kwargs)
+        super(AddEditItemView, self).setup(request, *args, **kwargs)
         self.action = self.dashboard_url
         self.organizer_obj = OrganizerItem.objects.get(pk=kwargs['organizerobject_id'])
         self.template = loader.get_template('organizer/includes/form_include.html')
@@ -271,6 +274,28 @@ class AddItemView(AuthenticatedAppView):
             return redirect(self.dashboard_url)
         self.context['form'] = form
         return HttpResponse(self.template.render(self.context, request))
+
+
+class ShiftKanbanItem(AuthenticatedAppView):
+    def get(self, request, *args, **kwargs):
+        self.set_dashboard_items()
+        direction = kwargs['direction']
+        if self.organizer_object.subclass_type == 'week':
+            if direction == 'up':
+                self.day.kanbanitem_set.add(self.kanban_item)
+                self.day.save()
+            elif direction == 'down':
+                self.month.kanbanitem_set.add(self.kanban_item)
+                self.month.save()
+        elif self.organizer_object.subclass_type == 'month':
+            if direction == 'up':
+                self.week.kanbanitem_set.add(self.kanban_item)
+                self.week.save()
+        elif self.organizer_object.subclass_type == 'day':
+            if direction == 'down':
+                self.week.kanbanitem_set.add(self.kanban_item)
+                self.week.save()
+        return redirect(reverse('dashboard'))
 
 
 class MigrateKanbanItem(AuthenticatedAppView):

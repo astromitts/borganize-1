@@ -1,4 +1,15 @@
 <div class="container kanban-item">
+	{% if kanbanitem.organizer_item.subclass_type == 'week' or  kanbanitem.organizer_item.subclass_type == 'month' %}
+		<a href="{% url 'shift_item' direction='up' kanbanitem_id=kanbanitem.pk organizerobject_id=kanbanitem.organizer_item.pk%}">
+			<div class="row kanban-item_move kanban-item_moveup">
+				<div class="col"></div>
+				<div class="col">
+					move&nbsp;up
+				</div>
+				<div class="col"></div>
+			</div>
+		</a>
+	{% endif %}
 	<div class="row">
 		<div class="col-2">
 			{% if kanbanitem.status != 'to do' %}
@@ -18,5 +29,16 @@
 		<div class="col">{{kanbanitem.label.label}}</div>
 		<div class="col-2"></div>
 	</div>
+	{% endif %}
+	{% if kanbanitem.organizer_item.subclass_type == 'week' or  kanbanitem.organizer_item.subclass_type == 'day' %}
+		<a href="{% url 'shift_item' direction='down' kanbanitem_id=kanbanitem.pk organizerobject_id=kanbanitem.organizer_item.pk%}">
+			<div class="row kanban-item_move kanban-item_movedown">
+				<div class="col"></div>
+				<div class="col">
+					move&nbsp;down
+				</div>
+				<div class="col"></div>
+			</div>
+		</a>
 	{% endif %}
 </div>

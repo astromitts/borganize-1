@@ -1,15 +1,10 @@
 <div class="container kanban-group">
 	<div class="row">
 		<div class="col kanban-category kanban-category_todo">
-			<h4>To do</h4>
+			<h4><a href="{{add_url}}"><button class="btn btn-sm btn-primary">+</button></a> To do</h4>
 			{% for kanbanitem in organizerobject.todo_items %}
 				{% include 'organizer/includes/kanbanitemcard.html' with kanbanitem=kanbanitem edit_url=add_url %}
 			{% endfor %}
-			<div class="row">
-				<div class="col-2">
-					<a href="{{add_url}}"><button class="btn btn-sm btn-primary">+</button></a>
-				</div>
-			</div>
 		</div>
 
 
