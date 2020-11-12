@@ -12,7 +12,10 @@ class KanBanItemForm(ModelForm):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(KanBanItemForm, self).__init__(*args, **kwargs)
-        LABEL_CHOICES = KanbanItemLabel.user_choices(self.user)
+        if self.user:
+            LABEL_CHOICES = KanbanItemLabel.user_choices(self.user)
+        else:
+            LABEL_CHOICES = []
         self.fields['label'].choices = LABEL_CHOICES
 
     class Meta:
