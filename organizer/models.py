@@ -100,7 +100,7 @@ class KanbanItemLabel(models.Model):
 
     @classmethod
     def user_choices(cls, user):
-        user_choices = []
+        user_choices = [(None, '-----------------------')]
         for label in cls.objects.filter(user=user).all():
             user_choices.append((label.pk, label.label))
         return user_choices

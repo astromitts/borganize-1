@@ -132,7 +132,7 @@ class AuthenticatedAppView(View):
                     this_category = self.pending_items.get(
                         'day',
                         {
-                            'header_title': 'Daily',
+                            'header_title': 'To do today',
                             'items': [],
                             'organizerobject_id': self.day.pk
                         }
@@ -141,7 +141,7 @@ class AuthenticatedAppView(View):
                     this_category = self.pending_items.get(
                         'week',
                         {
-                            'header_title': 'Weekly',
+                            'header_title': 'To do this week',
                             'items': [],
                             'organizerobject_id': self.week.pk
                         }
@@ -150,7 +150,7 @@ class AuthenticatedAppView(View):
                     this_category = self.pending_items.get(
                         'month',
                         {
-                            'header_title': 'Monthly',
+                            'header_title': 'To do this month',
                             'items': [],
                             'organizerobject_id': self.month.pk
                         }

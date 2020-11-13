@@ -1,6 +1,6 @@
 <div class="container kanban-item">
 	{% if kanbanitem.organizer_item.subclass_type == 'week' or  kanbanitem.organizer_item.subclass_type == 'month' %}
-		<a href="{% url 'shift_item' direction='up' kanbanitem_id=kanbanitem.pk organizerobject_id=kanbanitem.organizer_item.pk%}">
+		<a href="{% url 'shift_item' direction='up' kanbanitem_id=kanbanitem.pk organizerobject_id=kanbanitem.organizer_item.pk%}" class="kanban-item_move__link">
 			<div class="row kanban-item_move kanban-item_moveup">
 				<div class="col"></div>
 				<div class="col">
@@ -10,16 +10,16 @@
 			</div>
 		</a>
 	{% endif %}
-	<div class="row">
-		<div class="col-2">
+	<div class="row kanban-item_center">
+		<div class="col-2 kanban-item_moveleft">
 			{% if kanbanitem.status != 'to do' %}
-				<a href="{% url 'migrate_kanban_item' direction='back' kanban_item_id=kanbanitem.pk %}"><button class="btn btn-sm btn-outline-success"><</button></a>
+				<a href="{% url 'migrate_kanban_item' direction='back' kanban_item_id=kanbanitem.pk %}" class="kanban-item_movebtn kanban-item_movebtn__left float-left"><</a>
 			{% endif %}
 		</div>
-		<div class="col"><a href="{{edit_url}}{{kanbanitem.pk}}/">{{kanbanitem.description}}</a></div>
-		<div class="col-2">
+		<div class="col"><a href="{{edit_url}}{{kanbanitem.pk}}/" class="kanban-item_description">{{kanbanitem.description}}</a></div>
+		<div class="col-2 kanban-item_moveright">
 			{% if kanbanitem.status != 'done' %}
-				<a href="{% url 'migrate_kanban_item' direction='forward' kanban_item_id=kanbanitem.pk %}"><button class="btn btn-sm btn-outline-success">></button></a>
+				<a href="{% url 'migrate_kanban_item' direction='forward' kanban_item_id=kanbanitem.pk %}" class="kanban-item_movebtn kanban-item_movebtn__right float-right">></a>
 			{% endif %}
 		</div>
 	</div>
@@ -31,7 +31,7 @@
 	</div>
 	{% endif %}
 	{% if kanbanitem.organizer_item.subclass_type == 'week' or  kanbanitem.organizer_item.subclass_type == 'day' %}
-		<a href="{% url 'shift_item' direction='down' kanbanitem_id=kanbanitem.pk organizerobject_id=kanbanitem.organizer_item.pk%}">
+		<a href="{% url 'shift_item' direction='down' kanbanitem_id=kanbanitem.pk organizerobject_id=kanbanitem.organizer_item.pk%}" class="kanban-item_move__link">
 			<div class="row kanban-item_move kanban-item_movedown">
 				<div class="col"></div>
 				<div class="col">

@@ -26,8 +26,18 @@ body {
 	border-left: 1px dotted #7F7F7F;
 }
 .kanban-item {
-	border: 1px solid #CCCCCC;
+	/*border: 1px solid #CCCCCC;*/
 	margin-bottom: .5rem;
+}
+
+.kanban-item_description {
+	color: #000000;
+	font-weight: bold;
+}
+
+.kanban-item_center {
+	border-top: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
 }
 
 .kanban-item_label {
@@ -37,18 +47,62 @@ body {
 
 .kanban-item_move {
 	background-color: #E5E7E9;
+	color: #000000;
 }
 
 .kanban-item_move:hover {
 	background-color: #CCCCCC;
 }
 
+.kanban-item_move__link:hover {
+	text-decoration: none;
+}
+
 .kanban-item_moveup {
 	border-bottom: solid 1px #CCCC;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
 }
 
 .kanban-item_movedown {
 	border-top: solid 1px #CCCC;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+
+.kanban-item_moveright {
+	padding-right: 0;
+}
+
+.kanban-item_moveleft {
+	padding-left: 0;
+}
+
+a.kanban-item_movebtn:hover {
+	color: #000000;
+	text-decoration: none;
+	background-color: #16A085;
+}
+
+.kanban-item_movebtn {
+	height: 100%;
+	background-color: #A3E4D7;
+	width: 1.3rem;
+	text-align: center;
+	color: #000000;
+	font-weight: bold;
+	vertical-align: center;
+}
+
+.kanban-item_movebtn__right {
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.kanban-item_movebtn__left {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
 }
 
 .label-manager-list {
@@ -72,4 +126,11 @@ body {
 	width: 6rem;
 	height: 90%;
 	margin: 0 auto;
+}
+
+.rollover-form {
+	border-radius: 5px;
+	border: 1px solid #CCCCCC;
+	background-color: #FFFFFF;
+	padding: .5rem;
 }

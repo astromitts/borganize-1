@@ -1,22 +1,32 @@
-<div>Looks like you have some pending kanban items to roll over! What would you like to do with them?</div>
-<form method="POST" action="">
-	{% csrf_token %}
-	{% for category_key, category in rollover_categories.items %}
-		<h3>{{category.header_title}} items</h3>
-		<table border=1>
-			<tr><th>rollover</th><th>item</th><th>status</th></tr>
-			{% for item in category.items %}
-			<tr>
-				<td>
-					<input type="radio" name="rollover_item_{{category.organizerobject_id}}_{{item.pk}}" id="{{item.pk}}" value="rollover" checked=checked /> Roll over
-					<input type="radio" name="rollover_item_{{category.organizerobject_id}}_{{item.pk}}" id="{{item.pk}}" value="ignore"/> Ignore
-				</td>
-				<td>{{item.description}}</td>
-				<td>{{item.status}}</td>
-			</tr>
-			{% endfor %}
-		</table>
-	{% endfor %}
-	<br />
-	<input type="submit" value="Continue" />
-</form>
+{% extends 'organizer/base.html' %}
+
+{% block main_content %}
+	<div class="row">
+		<div class="col">
+			<div class="rollover-form">
+				<div>Looks like you have some pending kanban items to roll over! What would you like to do with them?</div>
+				<form method="POST" action="">
+					{% csrf_token %}
+					{% for category_key, category in rollover_categories.items %}
+						<h4>{{category.header_title}}</h4>
+						<table class="table">
+							<tr><th>rollover</th><th>item</th><th>status</th></tr>
+							{% for item in category.items %}
+							<tr>
+								<td>
+									<input type="radio" name="rollover_item_{{category.organizerobject_id}}_{{item.pk}}" id="{{item.pk}}" value="rollover" checked=checked /> Roll over
+									<input type="radio" name="rollover_item_{{category.organizerobject_id}}_{{item.pk}}" id="{{item.pk}}" value="ignore"/> Ignore
+								</td>
+								<td>{{item.description}}</td>
+								<td>{{item.status}}</td>
+							</tr>
+							{% endfor %}
+						</table>
+					{% endfor %}
+					<br />
+					<input type="submit" value="Continue" />
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}
